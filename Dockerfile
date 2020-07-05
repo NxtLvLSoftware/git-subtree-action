@@ -8,6 +8,6 @@ RUN apk add git \
     openssh \
     git-subtree
 
-ADD entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /root/entrypoint.sh
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/root/entrypoint.sh"]
