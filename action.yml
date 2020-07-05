@@ -1,4 +1,4 @@
-name: "nxlvlsoftware/git-subtree"
+name: "nxtlvlsoftware/git-subtree"
 description: "Sync a sub-directory from a parent repo to a child repository (git subtree.)"
 inputs:
   repo:
