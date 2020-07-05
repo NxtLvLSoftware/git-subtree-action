@@ -10,4 +10,4 @@ RUN apk add git \
 
 ADD entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
