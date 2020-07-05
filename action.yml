@@ -1,0 +1,20 @@
+name: "pmmp-subtree"
+description: "Sync a sub-directory from a parent repo to a child repository (git subtree.)"
+inputs:
+  repo:
+    description: "Child repository to sync the subtree to (eg. owner/repository.)"
+    required: true
+  path:
+    description: "Path prefix in parent repo to split into child subtree (eg. src/PackageName.)"
+    required: true
+  deploy_key:
+    ## Use a repo/org secret for this value. ##
+    description: "Deployment SSH key for pushing to child repo (checkout out deployment tokens for single repos or bot accounts for multi-repos/orgs.)"
+    required: true
+  tag:
+    description: "Create a tag on the child subtree repository (tag name is the supplied value.)"
+    required: false
+    default: "false"
+runs:
+  using: "docker"
+  image: "Dockerfile"
