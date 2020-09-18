@@ -15,6 +15,7 @@ using the actions pipeline.
 | deploy_key   | Deployment SSH key for pushing to child repo (checkout out deployment tokens for single repos or bot accounts for multi-repos/orgs.)|
 | tag          | Create a tag on the child subtree repository (tag name is the supplied value.)                                                      |
 | force        | Force push to the child subtree repository (recommended for pure downstream mirrors.)                                               |
+| branch       | Branch of child subtree repository (default is branch or tag ref that triggered the workflow.)                                      |
 
 
 ### Workflow Examples

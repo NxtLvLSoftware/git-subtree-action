@@ -19,6 +19,10 @@ inputs:
     description: "Force push to the child subtree repository (recommended for pure downstream mirrors.)"
     required: false
     default: "false"
+  branch:
+    description: "Branch of child subtree repository (default is branch or tag ref that triggered the workflow.)"
+    required: false
+    default: ""
 runs:
   using: "docker"
   image: "Dockerfile"

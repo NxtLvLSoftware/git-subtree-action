@@ -9,12 +9,22 @@ ssh-keyscan github.com > /root/.ssh/known_hosts
 echo "${INPUT_DEPLOY_KEY}" >> /root/.ssh/subtree
 chmod 0600 /root/.ssh/subtree
 
+# Resolve downstream branch.
+# If not set then use the event github ref, if the ref isn't set default to master.
+if [ "$INPUT_BRANCH" == "" ]; then
+	if [ -z "$GITHUB_REF"] || [ "$GITHUB_REF" == "" ]; then
+		INPUT_BRANCH="master"
+	else
+		INPUT_BRANCH="$GITHUB_REF"
+	fi
+fi
+
 # Generate sha256 of the downstream repo name
 SPLIT_DIR=$(echo -n "${INPUT_REPO}" | sha256sum)
 SPLIT_DIR="${SPLIT_DIR::-3}"
 
 # Get subtree repository into split directory
-git clone subtree:"${INPUT_REPO}" "${SPLIT_DIR}" --bare
+git clone -b "$INPUT_BRANCH" --bare subtree:"${INPUT_REPO}" "${SPLIT_DIR}"
 
 # Create the subtree split branch
 git subtree split --prefix="${INPUT_PATH}" -b split
@@ -25,10 +35,10 @@ if [ "$INPUT_FORCE" == "true" ]; then
 fi
 
 # Push to the subtree directory
-git push "${PUSH_ARGS}" "${SPLIT_DIR}" split:master
+git push "${PUSH_ARGS}" "${SPLIT_DIR}" split:"$INPUT_BRANCH"
 
 cd "${SPLIT_DIR}"
-git push -u "${PUSH_ARGS}" origin master
+git push -u "${PUSH_ARGS}" origin "$INPUT_BRANCH"
 
 # Tag the subtree repository
 if [ "$INPUT_TAG" != "false" ]; then
