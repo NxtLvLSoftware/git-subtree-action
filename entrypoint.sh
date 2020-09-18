@@ -28,7 +28,7 @@ fi
 git push "${PUSH_ARGS}" "${SPLIT_DIR}" split:master
 
 cd "${SPLIT_DIR}"
-git push "-u ${PUSH_ARGS}" origin master
+git push -u "${PUSH_ARGS}" origin master
 
 # Tag the subtree repository
 if [ "$INPUT_TAG" != "false" ]; then
