@@ -12,7 +12,7 @@ chmod 0600 /root/.ssh/subtree
 # Resolve downstream branch.
 # If not set then use the event github ref, if the ref isn't set default to master.
 if [ "$INPUT_BRANCH" == "" ]; then
-	if [ -z "$GITHUB_REF"] || [ "$GITHUB_REF" == "" ]; then
+	if [ -z "$GITHUB_REF" ] || [ "$GITHUB_REF" == "" ]; then
 		INPUT_BRANCH="master"
 	else
 		INPUT_BRANCH="$GITHUB_REF"
