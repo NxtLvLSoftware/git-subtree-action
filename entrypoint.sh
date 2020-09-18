@@ -38,7 +38,7 @@ fi
 git push "${PUSH_ARGS}" "${SPLIT_DIR}" split:"$INPUT_BRANCH"
 
 cd "${SPLIT_DIR}"
-git remote add origin "${INPUT_REPO}"
+git remote add origin "git@github.com:${INPUT_REPO}.git"
 git push -u "${PUSH_ARGS}" origin "$INPUT_BRANCH"
 
 # Tag the subtree repository
