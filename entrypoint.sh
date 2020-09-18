@@ -17,18 +17,17 @@ git clone subtree:"${INPUT_REPO}" "${SPLIT_DIR}" --bare
 
 # Create the subtree split branch
 git subtree split --prefix="${INPUT_PATH}" -b split
-# Push to the subtree directory
-git push "${SPLIT_DIR}" split:master
-
-PUSH_ARGS="-u"
 
 # Check for force push to remote
 if [ "$INPUT_FORCE" == "true" ]; then
-	PUSH_ARGS="${PUSH_ARGS} -f"
+	PUSH_ARGS="-f"
 fi
 
+# Push to the subtree directory
+git push "${PUSH_ARGS}" "${SPLIT_DIR}" split:master
+
 cd "${SPLIT_DIR}"
-git push "${PUSH_ARGS}" origin master
+git push "-u ${PUSH_ARGS}" origin master
 
 # Tag the subtree repository
 if [ "$INPUT_TAG" != "false" ]; then
