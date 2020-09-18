@@ -9,13 +9,16 @@ ssh-keyscan github.com > /root/.ssh/known_hosts
 echo "${INPUT_DEPLOY_KEY}" >> /root/.ssh/subtree
 chmod 0600 /root/.ssh/subtree
 
+# Generate sha256 of the downstream repo name
+SPLIT_DIR=$(echo -n "${INPUT_REPO}" | sha256sum)
+
 # Get subtree repository into split directory
-git clone subtree:"${INPUT_REPO}" "${INPUT_REPO}" --bare
+git clone subtree:"${INPUT_REPO}" "${SPLIT_DIR}" --bare
 
 # Create the subtree split branch
 git subtree split --prefix="${INPUT_PATH}" -b split
 # Push to the subtree directory
-git push "${INPUT_REPO}" split:master
+git push "${SPLIT_DIR}" split:master
 
 PUSH_ARGS="-u"
 
@@ -24,7 +27,7 @@ if [ "$INPUT_FORCE" == "true" ]; then
 	PUSH_ARGS="${PUSH_ARGS} -f"
 fi
 
-cd "${INPUT_REPO}"
+cd "${SPLIT_DIR}"
 git push "${PUSH_ARGS}" origin master
 
 # Tag the subtree repository
