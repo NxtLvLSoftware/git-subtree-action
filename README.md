@@ -14,6 +14,7 @@ using the actions pipeline.
 | path         | Path prefix in parent repo to split into child subtree (eg. src/PackageName.)                                                       |
 | deploy_key   | Deployment SSH key for pushing to child repo (checkout out deployment tokens for single repos or bot accounts for multi-repos/orgs.)|
 | tag          | Create a tag on the child subtree repository (tag name is the supplied value.)                                                      |
+| force        | Force push to the child subtree repository (recommended for pure downstream mirrors.)                                               |
 
 
 ### Workflow Examples
@@ -50,6 +51,7 @@ jobs:
           repo: 'nxtlvlsoftware-packages/pmmp-${{ matrix.path }}'
           path: 'src/${{ matrix.path }}'
           deploy_key: ${{ secrets.DOWNSTREAM_GITHUB_DEPLOY_KEY }}
+          force: true
 ```
 
 ### Syncing tags

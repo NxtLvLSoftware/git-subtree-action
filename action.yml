@@ -15,6 +15,10 @@ inputs:
     description: "Create a tag on the child subtree repository (tag name is the supplied value.)"
     required: false
     default: "false"
+  force:
+    description: "Force push to the child subtree repository (recommended for pure downstream mirrors.)"
+    required: false
+    default: "false"
 runs:
   using: "docker"
   image: "Dockerfile"

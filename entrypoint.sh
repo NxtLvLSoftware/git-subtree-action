@@ -15,8 +15,15 @@ git subtree split --prefix="${INPUT_PATH}" --squash -b split
 # Push to the subtree directory
 git push /tmp/split split:master
 
+PUSH_ARGS="-u"
+
+# Check for force push to remote
+if [ "$INPUT_FORCE" == "true" ]; then
+	PUSH_ARGS=" -f"
+fi
+
 cd /tmp/split
-git push -u origin master
+git push ${PUSH_ARGS} origin master
 
 # Tag the subtree repository
 if [ "$INPUT_TAG" != "false" ]; then
