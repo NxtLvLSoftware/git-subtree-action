@@ -8,12 +8,12 @@ echo "${INPUT_DEPLOY_KEY}" >> /root/.ssh/subtree
 chmod 0600 /root/.ssh/subtree
 
 # Get subtree repository into split directory
-git clone subtree:"${INPUT_REPO}" /tmp/split --bare
+git clone subtree:"${INPUT_REPO}" .split --bare
 
 # Create the subtree split branch
 git subtree split --prefix="${INPUT_PATH}" --squash -b split
 # Push to the subtree directory
-git push /tmp/split split:master
+git push ./.split split:master
 
 PUSH_ARGS="-u"
 
@@ -22,7 +22,7 @@ if [ "$INPUT_FORCE" == "true" ]; then
 	PUSH_ARGS=" -f"
 fi
 
-cd /tmp/split
+cd ./.split
 git push ${PUSH_ARGS} origin master
 
 # Tag the subtree repository
