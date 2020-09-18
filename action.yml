@@ -12,7 +12,7 @@ inputs:
     description: "Deployment SSH key for pushing to child repo (checkout out deployment tokens for single repos or bot accounts for multi-repos/orgs.)"
     required: true
   tag:
-    description: "Create a tag on the child subtree repository (tag name is the supplied value.)"
+    description: "Create (or mirror) a tag on the child subtree repository (branch or tag ref that triggered the workflow when true.)"
     required: false
     default: "false"
   force:
