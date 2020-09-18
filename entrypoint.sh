@@ -1,5 +1,7 @@
 #!/bin/sh -l
 
+set -e
+
 # Key scan for github.com
 ssh-keyscan github.com > /root/.ssh/known_hosts
 
