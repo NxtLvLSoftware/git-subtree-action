@@ -21,11 +21,11 @@ PUSH_ARGS="-u"
 
 # Check for force push to remote
 if [ "$INPUT_FORCE" == "true" ]; then
-	PUSH_ARGS=" -f"
+	PUSH_ARGS="${PUSH_ARGS} -f"
 fi
 
 cd ./.split
-git push ${PUSH_ARGS} origin master
+git push "${PUSH_ARGS}" origin master
 
 # Tag the subtree repository
 if [ "$INPUT_TAG" != "false" ]; then
