@@ -11,6 +11,7 @@ chmod 0600 /root/.ssh/subtree
 
 # Generate sha256 of the downstream repo name
 SPLIT_DIR=$(echo -n "${INPUT_REPO}" | sha256sum)
+SPLIT_DIR="${SPLIT_DIR::-3}"
 
 # Get subtree repository into split directory
 git clone subtree:"${INPUT_REPO}" "${SPLIT_DIR}" --bare
