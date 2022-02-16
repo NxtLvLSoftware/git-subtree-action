@@ -45,7 +45,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - uses: nxtlvlsoftware/git-subtree-action@1
+      - uses: nxtlvlsoftware/git-subtree-action@1.1
         with:
           repo: 'nxtlvlsoftware/${{ matrix.path }}'
           path: 'src/${{ matrix.path }}'
@@ -74,7 +74,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - uses: nxtlvlsoftware/git-subtree-action@1
+      - uses: nxtlvlsoftware/git-subtree-action@1.1
         with:
           repo: 'nxtlvlsoftware/my-fancy-package'
           path: 'packages/fancy-package'
