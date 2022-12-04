@@ -12,7 +12,7 @@ using the actions pipeline.
 | ------------ | -------------------------------------------------------------------------------------                                               |
 | repo         | Child repository to sync the subtree to (eg. owner/repository.)                                                                     |
 | path         | Path prefix in parent repo to split into child subtree (eg. src/PackageName.)                                                       |
-| deploy_key   | Deployment (public) SSH key for pushing to child repo (use deployment tokens for single repos or bot accounts for multi-repos/orgs.)|
+| deploy_key   | Deployment (private) SSH key for pushing to child repo (use deployment tokens for single repos or bot accounts for multi-repos/orgs.)|
 | tag          | Create (or mirror) a tag on the child subtree repository (branch or tag ref that triggered the workflow when true.)                 |
 | force        | Force push to the child subtree repository (recommended for pure downstream mirrors.)                                               |
 | branch       | Branch of child subtree repository (default is branch or tag ref that triggered the workflow.)                                      |
